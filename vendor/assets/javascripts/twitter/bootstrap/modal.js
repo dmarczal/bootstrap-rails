@@ -90,13 +90,15 @@
 
         e = $.Event('hide')
 
-        this.$element.trigger(e)
+        //this.$element.trigger(e) fixed multiple modals
+        if ($("div.modal.in").length <= 1) this.$element.trigger(e)
 
         if (!this.isShown || e.isDefaultPrevented()) return
 
         this.isShown = false
 
-        $('body').removeClass('modal-open')
+        //$('body').removeClass('modal-open') fixed multiple modals
+        if ($("div.modal.in").length <= 1) $('body').removeClass('modal-open')
 
         this.escape()
 
